@@ -1,0 +1,12 @@
+
+.custom-sub-nav {
+	@include sub-nav(); 
+	text-align: center;
+}
+
+.custom-subheader {
+	@include subheader();
+	text-align: center;
+	font-size: 32px;
+	padding: 4% 10% 2% 10%;
+}
