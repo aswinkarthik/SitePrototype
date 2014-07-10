@@ -1,0 +1,25 @@
+$topbar-bg: white;
+
+//For links
+$topbar-link-color: #0A559E;
+$topbar-link-color-hover: #515151;
+$topbar-link-color-active: #515151;
+$topbar-link-color-active-hover: #515151;
+$topbar-link-font-size: rem-calc(14);
+$topbar-link-bg-color-hover: white;
+$topbar-link-bg-hover: white;
+$topbar-link-bg-active: white;
+$topbar-link-bg-active-hover: white;
+
+.site-header {
+  margin-top: 0.5%;
+  border-bottom: 1px solid #e8e8e8;
+  min-height: 5%;
+  background-color: white;
+}
+
+.top-bar {
+	.active {
+		border-bottom: 0.3em solid #515151;
+	}
+}

@@ -2,9 +2,9 @@
 layout: default
 ---
 
-<h2 class="custom-subheader"> WE EMBRACE CONSTANT TRANSFORMATION TO CREATE OPTIMAL VALUE </h2>
+<h2 class="subheader"> WE EMBRACE CONSTANT TRANSFORMATION TO CREATE OPTIMAL VALUE </h2>
 
-<dl class="custom-sub-nav">
+<dl class="sub-nav">
   <dd class="active"><a href="#">SECTORS</a></dd>
   <dd><a href="#">COMPANIES &amp; BRANDS</a></dd>
   <dd><a href="#">PRODUCTS &amp; SERVICES</a></dd>
