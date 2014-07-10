@@ -4,11 +4,13 @@ layout: default
 
 <h2 class="subheader"> WE EMBRACE CONSTANT TRANSFORMATION TO CREATE OPTIMAL VALUE </h2>
 
-<dl class="sub-nav">
-  <dd class="active"><a href="#">SECTORS</a></dd>
-  <dd><a href="#">COMPANIES &amp; BRANDS</a></dd>
-  <dd><a href="#">PRODUCTS &amp; SERVICES</a></dd>
-</dl>
+<div class="row"> 
+  <dl class="sub-nav">
+    <div class="medium-4 columns"><dd class="active"><a href="#">SECTORS</a></dd> </div>
+    <div class="medium-4 columns"><dd ><a href="#">COMPANIES &amp; BRANDS</a></dd> </div>
+    <div class="medium-4 columns"><dd ><a href="#">PRODUCTS &amp; SERVICES</a></dd> </div>
+  </dl>
+</div>
 
 <ul class="small-block-grid-1 medium-block-grid-2">
   <li><a href="#">
