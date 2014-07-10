@@ -1,5 +1,16 @@
+# Folder view configs
+.DS_Store
+Desktop.ini
+
+# Thumbnails
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Application specific
 _site
-*.DS_Store
-# /css/*
-# /bower_components/*
-/node_modules/*
+bower_components
+node_modules
