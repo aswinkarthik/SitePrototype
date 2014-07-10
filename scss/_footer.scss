@@ -1,0 +1,33 @@
+.site-footer {
+  border-top: 1px solid #e8e8e8;
+  padding: 30px 0;
+  background-color: #1B1B1B;
+  text-align: left;
+
+  .subheader{
+  	font-size: 15px;
+  	color: #646463;
+  }
+
+  li {
+  	font-size: 12px;
+  	list-style: none;
+  	line-height: 2em;
+  	padding: 0.7em;
+  }
+
+  a {
+	color: #646463;
+  	text-decoration: none;
+  }
+
+   .panel p {
+  	color: #646463;
+  	font-size: 12px;
+  }
+}
+
+//Panel
+$panel-bg: scale-color(#151515, $lightness: -5%);
+$panel-function-factor: -11%;
+$panel-border-color: scale-color($panel-bg, $lightness: $panel-function-factor);
