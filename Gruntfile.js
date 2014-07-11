@@ -11,10 +11,25 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          'css/app.css': 'scss/app.scss'
+          '_source/css/app.css': 'scss/app.scss'
         }        
       }
     },
+
+    concat: {
+      options: {
+        separator: ';\n',
+      },
+      js_frontend: {
+        src: [
+          './bower_components/jquery/dist/jquery.min.js',
+          './bower_components/foundation/js/foundation.min.js',
+          './bower_components/modernizr/modernizr.js'
+        ],
+        dest: './_source/js/app.js',
+      }
+    },
+
 
     watch: {
       grunt: { files: ['Gruntfile.js'] },
@@ -27,8 +42,9 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-sass');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.registerTask('build', ['sass']);
-  grunt.registerTask('default', ['build','watch']);
+  grunt.registerTask('default', ['build','concat','watch']);
 }

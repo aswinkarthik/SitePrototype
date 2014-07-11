@@ -7,7 +7,7 @@ Requirements:
 - [Grunt](http://gruntjs.com/) (`npm install -g grunt-cli`)
 - [Bower](http://bower.io/) (`npm install -g bower`)
 
-Clone the repo then install dependencies:
+Clone the repo and then install the dependencies:
 
 ```bash
 $ gem install --no-document jekyll

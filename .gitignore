@@ -14,3 +14,7 @@ Thumbs.db
 _site
 bower_components
 node_modules
+
+#Images
+images/*.png
+
