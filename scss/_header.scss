@@ -11,6 +11,14 @@ $topbar-link-bg-hover: white;
 $topbar-link-bg-active: white;
 $topbar-link-bg-active-hover: white;
 
+/* Top menu icon styles */
+$topbar-menu-link-transform: uppercase;
+$topbar-menu-link-font-size: rem-calc(13);
+$topbar-menu-link-weight: bold;
+$topbar-menu-link-color: #0A559E;
+$topbar-menu-icon-color: #0A559E;
+
+
 .site-header {
   margin-top: 0.5em;
   border-bottom: 1px solid #e8e8e8;
