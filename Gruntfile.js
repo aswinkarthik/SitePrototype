@@ -11,7 +11,7 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          '_source/css/app.css': 'scss/app.scss'
+          '_source/css/app.css': '_source/_scss/app.scss'
         }        
       }
     },
@@ -22,11 +22,12 @@ module.exports = function(grunt) {
       },
       js_frontend: {
         src: [
-          './bower_components/jquery/dist/jquery.min.js',
-          './bower_components/foundation/js/foundation.min.js',
-          './bower_components/modernizr/modernizr.js'
+          'bower_components/jquery/dist/jquery.min.js',
+          'bower_components/foundation/js/foundation.min.js',
+          'bower_components/modernizr/modernizr.js',
+          '_source/_js/*'
         ],
-        dest: './_source/js/app.js',
+        dest: '_source/js/app.js',
       }
     },
 
@@ -37,7 +38,18 @@ module.exports = function(grunt) {
       sass: {
         files: 'scss/**/*.scss',
         tasks: ['sass']
+      },
+
+      js_frontend: {
+        files: [
+          '_source/_js/*'
+        ],   
+        tasks: ['concat:js_frontend'],  
+        options: {
+          livereload: true              
+        }
       }
+
     }
   });
 
