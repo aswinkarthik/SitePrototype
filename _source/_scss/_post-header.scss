@@ -1,0 +1,14 @@
+@media #{$small-only} {
+	.top-bar-section ul li {
+		&.active > a {
+			background-color: scale-color($primary-color, $lightness: 50%);
+			color: #fff;
+		}
+
+		& > a {
+			background: $primary-color;
+			color: #fff;	
+		}
+
+	}
+}

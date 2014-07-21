@@ -1,36 +1,28 @@
-$topbar-bg: white;
-
-//For links
-$topbar-link-color: #0A559E;
-$topbar-link-color-hover: #515151;
-$topbar-link-color-active: #515151;
-$topbar-link-color-active-hover: #515151;
-$topbar-link-font-size: rem-calc(14);
-$topbar-link-bg-color-hover: white;
-$topbar-link-bg-hover: white;
-$topbar-link-bg-active: white;
-$topbar-link-bg-active-hover: white;
-
-/* Top menu icon styles */
-$topbar-menu-link-transform: uppercase;
-$topbar-menu-link-font-size: rem-calc(13);
-$topbar-menu-link-weight: bold;
-$topbar-menu-link-color: #0A559E;
-$topbar-menu-icon-color: #0A559E;
-
+$time-for-transition: 0.20s;
 
 .site-header {
-  margin-top: 0.5em;
-  border-bottom: 1px solid #e8e8e8;
-  background-color: white;
+
+	@media #{$medium-up} {
+	   border-bottom: 1px solid #e8e8e8;
+	}
+  	background-color: #fff;
+	margin-top: 0.5em;
 }
 
-.top-bar {
-	.active {
-		border-bottom: 0.3em solid #515151;
+@media #{$medium-up} {
+	.top-bar {
+		.active {
+			border-bottom: 0.3em solid #515151;
+			-moz-transition: all $time-for-transition ease-in-out;
+			-ms-transition: all $time-for-transition ease-in-out;
+			-o-transition: all $time-for-transition ease-in-out;
+			-webkit-transition: all $time-for-transition ease-in-out;
+			transition: all $time-for-transition ease-in-out;
+		}
 	}
 }
 
 .logo {
 	width: 7em;
 }
+

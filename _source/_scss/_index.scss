@@ -1,13 +1,29 @@
+$time-for-transition: 0.50s;
 
 .row {
-	text-align: center;
 	padding-left: 2%;
 	padding-right: 2%;
+	text-align: center;
 }
 
 .subheader {
+	
+	@media #{$medium-up} {
+		font-size: 2em;
+	}
+	
+	@media #{$small-only} {
+		font-size: 1.5em;
+	}
+	
+	padding: 4% 10% 2%;
 	text-align: center;
-	font-size: 32px;
-	padding: 4% 10% 2% 10%;
 }
 
+.sub-nav dd.active a {
+	-moz-transition: all $time-for-transition ease-in-out;
+	-ms-transition: all $time-for-transition ease-in-out;
+	-o-transition: all $time-for-transition ease-in-out;
+	-webkit-transition: all $time-for-transition ease-in-out;
+	transition: all $time-for-transition ease-in-out;
+}

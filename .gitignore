@@ -20,3 +20,5 @@ app.js
 #Images
 images/*.png
 
+# Scss-Lint Specific
+scss-lint-report.xml
