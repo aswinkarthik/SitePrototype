@@ -1,4 +1,10 @@
+### Build Status
+
+[![Build Status](https://travis-ci.org/aswinkarthik93/SitePrototype.svg?branch=master)](https://travis-ci.org/aswinkarthik93/SitePrototype)
+
+
 ### Install
+
 
 Requirements:
 
