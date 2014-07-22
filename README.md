@@ -19,10 +19,17 @@ Clone the repo and then install the dependencies:
 $ gem install --no-document jekyll
 $ npm install
 $ bower install
+$ gem install scss-lint
 ```
 
-### Start the development server
+### Building the Site
 
 ```bash
-$ jekyll serve
+$ grunt build
+```
+
+### Deploying the Site
+
+```bash
+$ grunt
 ```
