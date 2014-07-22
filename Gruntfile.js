@@ -47,6 +47,9 @@ module.exports = function(grunt) {
     },
 
     jekyll: {
+      build: {
+      },
+
       serve: {
         options: {
           serve: true
@@ -75,13 +78,16 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-sass');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-scss-lint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jekyll');
 
   grunt.registerTask('buildcss', ['scsslint','sass']);
   grunt.registerTask('buildjs', ['jshint','concat']);
-  grunt.registerTask('default', ['buildcss', 'buildjs', 'jekyll']);
+
+  grunt.registerTask('build', ['buildcss', 'buildjs', 'jekyll:build']);
+
+  grunt.registerTask('default', ['buildcss', 'buildjs', 'jekyll:serve']);
 }
