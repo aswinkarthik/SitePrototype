@@ -1,0 +1,14 @@
+language: ruby
+branches:
+  only:
+    - master
+install:
+  - npm install -g grunt-cli
+  - gem install --no-document jekyll
+  - npm install -g bower
+before_script:
+  - git checkout master
+  - git pull origin master
+  - npm install
+  - bower install
+script: grunt scsslint jshint
