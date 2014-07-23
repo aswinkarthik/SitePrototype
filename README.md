@@ -1,7 +1,6 @@
 ### Build Status
 
-[![Build Status](https://travis-ci.org/aswinkarthik93/SitePrototype.svg?branch=master)](https://travis-ci.org/aswinkarthik93/SitePrototype)
-
+[![Build Status](https://snap-ci.com/aswinkarthik93/SitePrototype/branch/master/build_image)](https://snap-ci.com/aswinkarthik93/SitePrototype/branch/master)
 
 ### Install
 
