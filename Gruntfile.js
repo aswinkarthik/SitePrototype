@@ -2,6 +2,12 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    clean: {
+      build: ['build'],
+      css: ['source/css/*'],
+      js: ['source/js/*']
+    },
+
     sass: {
       options: {
         includePaths: ['bower_components/foundation/scss']
@@ -113,6 +119,7 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-scss-lint');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -124,7 +131,7 @@ module.exports = function(grunt) {
 
   grunt.registerTask('buildcss', ['scsslint','sass:' + env]);
   grunt.registerTask('buildjs', ['jshint','concat:' + env]);
-  grunt.registerTask('build', ['buildcss', 'buildjs', 'jekyll:' + env ]);
-  grunt.registerTask('default', ['buildcss', 'buildjs', 'jekyll:serve']);
+  grunt.registerTask('build', ['clean','buildcss', 'buildjs', 'jekyll:' + env ]);
+  grunt.registerTask('default', ['clean','buildcss', 'buildjs', 'jekyll:serve']);
 
 }
