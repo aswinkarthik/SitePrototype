@@ -11,11 +11,12 @@ Thumbs.db
 .Trashes
 
 # Application specific
-_site
+build
 bower_components
 node_modules
 app.css
 app.js
+
 
 #Images
 images/*.png
