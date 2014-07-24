@@ -12,7 +12,6 @@ module.exports = function(grunt) {
       options: {
         includePaths: ['bower_components/foundation/scss']
       },
-      
       dev: {
         options: {
           outputStyle: 'expanded'
@@ -21,7 +20,6 @@ module.exports = function(grunt) {
           'source/css/app.css': 'source/_scss/app.scss'
         }        
       },
-      
       prod: {
         options: {
           outputStyle: 'compressed'
@@ -32,6 +30,17 @@ module.exports = function(grunt) {
       }
     },
     
+    scsslint: {
+      allFiles: [
+        'source/_scss/*.scss',
+      ],
+      options: {
+        config: '.scss-lint.yml',
+        reporterOutput: 'scss-lint-report.xml',
+        colorizeOutput: true
+      }
+    },
+
     concat: {
       dev: {
         options: {
@@ -45,7 +54,6 @@ module.exports = function(grunt) {
         ],
         dest: 'source/js/app.js',
       },
-
       prod: {
         options: {
           seperator: ';',
@@ -59,23 +67,10 @@ module.exports = function(grunt) {
         ],
         dest: 'source/js/app.js',
       }
-
-
     },
 
     jshint: {
       src: ['source/_js/*'],
-    },
-
-    scsslint: {
-      allFiles: [
-        'source/_scss/*.scss',
-      ],
-      options: {
-        config: '.scss-lint.yml',
-        reporterOutput: 'scss-lint-report.xml',
-        colorizeOutput: true
-      }
     },
 
     jekyll: {
@@ -84,13 +79,11 @@ module.exports = function(grunt) {
           dest: 'build/dev'
         }        
       },
-      
       prod: {
         options: {
           dest: 'build/prod'
         }
       },
-
       serve: {
         options: {
           serve: true
@@ -98,24 +91,19 @@ module.exports = function(grunt) {
       }
     },
 
-
     watch: {
       grunt: { files: ['Gruntfile.js'] },
-
       sass: {
         files: 'source/_scss/**/*.scss',
         tasks: [ 'buildcss']
       },
-
-      js_frontend: {
+      js: {
         files: [
           'source/_js/*'
         ],   
         tasks: ['buildjs']
       }
     }
-
-
   });
 
   grunt.loadNpmTasks('grunt-env');
@@ -127,11 +115,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jekyll');
 
-  var env = grunt.option('environment') || 'dev';
+  var env = grunt.option('environment') || process.env.ENVIRONMENT || 'dev';
 
   grunt.registerTask('buildcss', ['scsslint','sass:' + env]);
   grunt.registerTask('buildjs', ['jshint','concat:' + env]);
   grunt.registerTask('build', ['clean','buildcss', 'buildjs', 'jekyll:' + env ]);
   grunt.registerTask('default', ['clean','buildcss', 'buildjs', 'jekyll:serve']);
-
 }
