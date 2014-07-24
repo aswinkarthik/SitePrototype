@@ -1,4 +1,9 @@
+
+
 module.exports = function(grunt) {
+
+  var env = grunt.option('environment') || process.env.ENVIRONMENT || 'dev';
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -41,36 +46,40 @@ module.exports = function(grunt) {
       }
     },
 
-    concat: {
+    jshint: {
+      src: ['source/_js/*'],
+    },
+
+    uglify: {
       dev: {
         options: {
-          separator: ';\n',
+          sourceMap: true
         },
-        src: [
-          'bower_components/jquery/dist/jquery.min.js',
-          'bower_components/foundation/js/foundation.min.js',
-          'bower_components/modernizr/modernizr.js',
-          'source/_js/*'
-        ],
-        dest: 'source/js/app.js',
+        files: {
+          'source/js/app.js': 
+          [
+            'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/foundation/js/foundation.min.js',
+            'bower_components/modernizr/modernizr.js',
+            'source/_js/*'
+          ]
+        }
       },
       prod: {
         options: {
-          seperator: ';',
-          stripBanners: true
+          compress: true,
+          preserveComments: false
         },
-        src: [
-          'bower_components/jquery/dist/jquery.min.js',
-          'bower_components/foundation/js/foundation.min.js',
-          'bower_components/modernizr/modernizr.js',
-          'source/_js/*'
-        ],
-        dest: 'source/js/app.js',
+        files: {
+          'source/js/app.js': 
+          [
+            'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/foundation/js/foundation.min.js',
+            'bower_components/modernizr/modernizr.js',
+            'source/_js/*'
+          ]
+        }
       }
-    },
-
-    jshint: {
-      src: ['source/_js/*'],
     },
 
     jekyll: {
@@ -83,12 +92,16 @@ module.exports = function(grunt) {
         options: {
           dest: 'build/prod'
         }
-      },
-      serve: {
-        options: {
-          serve: true
-        } 
       }
+    },
+
+    shell: {                              
+        start: {                      
+            options: {                
+                stderr: true
+            },
+            command: 'scripts/start-server.sh ' + env
+        }
     },
 
     watch: {
@@ -110,15 +123,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-scss-lint');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jekyll');
-
-  var env = grunt.option('environment') || process.env.ENVIRONMENT || 'dev';
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('buildcss', ['scsslint','sass:' + env]);
-  grunt.registerTask('buildjs', ['jshint','concat:' + env]);
+  grunt.registerTask('buildjs', ['jshint','uglify:' + env]);
+  grunt.registerTask('start',['shell:start']);
+
   grunt.registerTask('build', ['clean','buildcss', 'buildjs', 'jekyll:' + env ]);
-  grunt.registerTask('default', ['clean','buildcss', 'buildjs', 'jekyll:serve']);
+  grunt.registerTask('default', ['build', 'start']);
 }
