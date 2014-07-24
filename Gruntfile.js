@@ -6,38 +6,64 @@ module.exports = function(grunt) {
       options: {
         includePaths: ['bower_components/foundation/scss']
       },
-      dist: {
+      
+      dev: {
+        options: {
+          outputStyle: 'expanded'
+        },
+        files: {
+          'source/css/app.css': 'source/_scss/app.scss'
+        }        
+      },
+      
+      prod: {
         options: {
           outputStyle: 'compressed'
         },
         files: {
-          '_source/css/app.css': '_source/_scss/app.scss'
+          'source/css/app.css': 'source/_scss/app.scss'
         }        
       }
     },
-
+    
     concat: {
-      options: {
-        separator: ';\n',
-      },
-      js_frontend: {
+      dev: {
+        options: {
+          separator: ';\n',
+        },
         src: [
           'bower_components/jquery/dist/jquery.min.js',
           'bower_components/foundation/js/foundation.min.js',
           'bower_components/modernizr/modernizr.js',
-          '_source/_js/*'
+          'source/_js/*'
         ],
-        dest: '_source/js/app.js',
+        dest: 'source/js/app.js',
+      },
+
+      prod: {
+        options: {
+          seperator: ';',
+          stripBanners: true
+        },
+        src: [
+          'bower_components/jquery/dist/jquery.min.js',
+          'bower_components/foundation/js/foundation.min.js',
+          'bower_components/modernizr/modernizr.js',
+          'source/_js/*'
+        ],
+        dest: 'source/js/app.js',
       }
+
+
     },
 
     jshint: {
-      src: ['_source/_js/*'],
+      src: ['source/_js/*'],
     },
 
     scsslint: {
       allFiles: [
-        '_source/_scss/*.scss',
+        'source/_scss/*.scss',
       ],
       options: {
         config: '.scss-lint.yml',
@@ -47,7 +73,16 @@ module.exports = function(grunt) {
     },
 
     jekyll: {
-      build: {
+      dev: {
+        options: {
+          dest: 'build/dev'
+        }        
+      },
+      
+      prod: {
+        options: {
+          dest: 'build/prod'
+        }
       },
 
       serve: {
@@ -62,13 +97,13 @@ module.exports = function(grunt) {
       grunt: { files: ['Gruntfile.js'] },
 
       sass: {
-        files: '_source/_scss/**/*.scss',
+        files: 'source/_scss/**/*.scss',
         tasks: [ 'buildcss']
       },
 
       js_frontend: {
         files: [
-          '_source/_js/*'
+          'source/_js/*'
         ],   
         tasks: ['buildjs']
       }
@@ -77,6 +112,7 @@ module.exports = function(grunt) {
 
   });
 
+  grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-scss-lint');
   grunt.loadNpmTasks('grunt-contrib-concat');
@@ -84,10 +120,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jekyll');
 
-  grunt.registerTask('buildcss', ['scsslint','sass']);
-  grunt.registerTask('buildjs', ['jshint','concat']);
+  var env = grunt.option('env') || 'dev';
 
-  grunt.registerTask('build', ['buildcss', 'buildjs', 'jekyll:build']);
-
+  grunt.registerTask('buildcss', ['scsslint','sass:' + env]);
+  grunt.registerTask('buildjs', ['jshint','concat:' + env]);
+  grunt.registerTask('build', ['buildcss', 'buildjs', 'jekyll:' + env ]);
   grunt.registerTask('default', ['buildcss', 'buildjs', 'jekyll:serve']);
+
 }

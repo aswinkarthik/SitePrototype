@@ -12,5 +12,5 @@ port: 4000
 markdown: kramdown
 permalink: none
 
-source: _source
-destination: _site
+source: source
+
