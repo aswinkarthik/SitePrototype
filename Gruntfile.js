@@ -127,7 +127,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-jekyll');
 
-  var env = grunt.option('env') || 'dev';
+  var env = grunt.option('environment') || 'dev';
 
   grunt.registerTask('buildcss', ['scsslint','sass:' + env]);
   grunt.registerTask('buildjs', ['jshint','concat:' + env]);
