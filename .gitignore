@@ -19,7 +19,10 @@ app.js
 
 
 #Images
-images/*.png
+*.png
+*.jpg
+*.jpeg
+*.gif
 
 # Scss-Lint Specific
 scss-lint-report.xml
