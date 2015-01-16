@@ -8,7 +8,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     clean: {
-      build: ['build'],
+      build: ['artifacts'],
       css: ['source/css/*'],
       js: ['source/js/*']
     },
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
           outputStyle: 'expanded'
         },
         files: {
-          'source/css/app.css': 'source/_scss/app.scss'
+          'artifacts/css/app.css': 'source/_scss/app.scss'
         }        
       },
       prod: {
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
           outputStyle: 'compressed'
         },
         files: {
-          'source/css/app.css': 'source/_scss/app.scss'
+          'artifacts/css/app.css': 'source/_scss/app.scss'
         }        
       }
     },
@@ -56,11 +56,8 @@ module.exports = function(grunt) {
           sourceMap: true
         },
         files: {
-          'source/js/app.js': 
+          'artifacts/js/app.js': 
           [
-            'bower_components/jquery/dist/jquery.min.js',
-            'bower_components/foundation/js/foundation.min.js',
-            'bower_components/modernizr/modernizr.js',
             'source/_js/*'
           ]
         }
@@ -85,12 +82,12 @@ module.exports = function(grunt) {
     jekyll: {
       dev: {
         options: {
-          dest: 'build/dev'
+          dest: 'artifacts'
         }        
       },
       prod: {
         options: {
-          dest: 'build/prod'
+          dest: 'artifacts'
         }
       }
     },
@@ -129,10 +126,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-shell');
 
+	
   grunt.registerTask('buildcss', ['scsslint','sass:' + env]);
   grunt.registerTask('buildjs', ['jshint','uglify:' + env]);
   grunt.registerTask('start',['shell:start']);
 
-  grunt.registerTask('build', ['clean','buildcss', 'buildjs', 'jekyll:' + env ]);
+  grunt.registerTask('build', ['clean', 'buildjs']);
   grunt.registerTask('default', ['build', 'start']);
 }
